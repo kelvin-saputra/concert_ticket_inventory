@@ -139,7 +139,19 @@ Terdapat beberapa perbedaan antara Form `POST` dan Form `GET`. salah satu perbed
     * Pada metode `GET` data disimpan dalam cache browser
 
 ### Perbedaan Antara `XML`, `JSON`, `HTML` daLam Konteks Pengiriman Data
-
+Perbedaan antara `XML`, `JSON`, dan `HTML` adalah sebagai berikut.
+- **Penggunaan**
+    * `XML`, biasanya digunakan untuk pertukaran data antar aplikasi.
+    * `JSON`, biasanya digunakan untuk pertukaran data antar server atau browser.
+    * `HTML`, tidak digunakan sebagai pengiriman data, namun ditujukan untuk membangun tampilan suatu website.
+- **Keamanan**
+    * `XML`, Lebih aman untuk digunakan dalam pengiriman data yang bersifat krusial dan sensitif karena tidak muncul di url.
+    * `JSON`, Kurang aman karena data akan ditampilkan pada url.
+    * `HTML`, tidak digunakan dalam pengiriman data.
+- **Struktur**
+    * `XML`, Menggunakan tag untuk mengelompokkan suatu data sehingga dapat mendukung hierarki yang jauh lebih kompleks
+    * `JSON`, Menggunakan pasangan antara `KEY` dan `VALUE` sehingga jauh lebih sederhana dan mudah untuk dibaca oleh orang yang awam
+    * `HTML`, Menggunakan tag untuk mendefinisikan elemen tampilan pada suatu website
 
 ### Alasan `JSON` Sering Digunakan Dalam Pertukaran Data
 `JSON` sering digunakan dalam pertukaran data karena memiliki banyak keuntungan yang bisa didapatkan. Salah satu manfaat yang bisa langsung dirasakan aalah kemudahan dalam membaca file dalam format `JSON`. Hal ini disebabkan karena sintaks `JSON` yang lebih sederhana dan penyajian data dalam bentuk pasangan `'KEY'` dan `'VALUE'`. Hal ini dapat memudahkan pengguna dalam menyimpan data yang kompleks dengan format yang lebih terstruktur. Selain itu, dengan menggunakan `JSON` memungkinkan kita untuk melakukan pertukaran data yang lebih efisien karena `JSON` tergolong dalam format data yang ringan dan penggunaan bandwidth yang lebih sedikit.
