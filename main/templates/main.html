@@ -1,5 +1,34 @@
-<h1>Concert Ticket Inventory</h1>
+{% extends 'base.html' %}
 
-<h3>Name : {{name}}</h3>
-<h3>NPM : {{NPM}}</h3>
-<h3>Class: {{class}}</h3>
+{% block content %}
+    <h1>Concert Ticket Inventory</h1>
+
+    <h3>Name : {{name}}</h3>
+    <h3>Class: {{class}}</h3>
+
+    <h4>Kamu menyimpan {{count}} item pada aplikasi ini</h4>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Date Added</th>
+        </tr>
+
+        {% for ticket in tickets %}
+            <tr>
+                <td>{{ticket.name}}</td>
+                <td>{{ticket.amount}}</td>
+                <td>{{ticket.description}}</td>
+                <td>{{ticket.date_added}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+<a href="{% url 'main:create_item' %}">
+    <button>
+        Add New Ticket
+    </button>
+</a>
+
+{% endblock content %}
