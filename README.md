@@ -261,8 +261,13 @@ def create_item(request):
     Pada implementasi nanti, int:id akan diisikan dengan id item yang telah didaftarkan.
 
 ### Tangkapan Layar Penggunaan 5 Fungsi Views
+Menggunakan fungsi `create_item`
 ![](img/Tugas3/Screenshot(555).png)
+Menggunakan fungsi `show_xml`
 ![](img/Tugas3/Screenshot(556).png)
+Menggunakan fungsi `show_json`
 ![](img/Tugas3/Screenshot(557).png)
+Menggunakan fungsi `show_xml_by_id`
 ![](img/Tugas3/Screenshot(558).png)
+Menggunakan fungsi `show_json_by_id`
 ![](img/Tugas3/Screenshot(559).png)
