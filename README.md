@@ -5,7 +5,7 @@
 
 **Kelas : PBP F**
 
-**Link  : [Concert Ticket Inventory Adaptable](https://concert-ticket-inventory.adaptable.app/)**
+**Link  : [Concert Ticket Inventory Adaptable](https://concert-ticket-inventory.adaptable.app/main/)**
 
 ## To Do List TUGAS 2
 - [x] Membuat sebuah proyek Django baru.
