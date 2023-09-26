@@ -4,7 +4,6 @@
     <h1>Concert Ticket Inventory</h1>
 
     <h3>Name : {{name}}</h3>
-    <h3>Class: {{class}}</h3>
 
     <h4>Kamu menyimpan {{count}} item pada aplikasi ini</h4>
     <table>
@@ -24,10 +23,17 @@
             </tr>
         {% endfor %}
     </table>
-
+    <h5>Sesi terakhir login: {{ last_login }}</h5>
+    
 <a href="{% url 'main:create_item' %}">
     <button>
         Add New Ticket
+    </button>
+</a>
+
+<a href="{% url 'main:logout' %}">
+    <button>
+        Logout
     </button>
 </a>
 
