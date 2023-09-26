@@ -138,7 +138,9 @@ Terdapat beberapa perbedaan antara Form `POST` dan Form `GET`. salah satu perbed
     * Pada metode `POST` data tidak disimpan dalam cache browser
     * Pada metode `GET` data disimpan dalam cache browser
 
+
 ### Perbedaan Antara `XML`, `JSON`, `HTML` dalam Konteks Pengiriman Data
+
 Perbedaan antara `XML`, `JSON`, dan `HTML` adalah sebagai berikut.
 - **Penggunaan**
     * `XML`, biasanya digunakan untuk pertukaran data antar aplikasi.
