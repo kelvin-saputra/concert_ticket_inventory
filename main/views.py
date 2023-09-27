@@ -84,3 +84,26 @@ def show_xml_by_id(request, id):
 def show_json_by_id(request, id):
     data = Item.objects.filter(pk=id)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+def add_amount(request, id):
+    data = Item.objects.filter(user=request.user).get(pk=id)
+    data.amount +=1
+    data.save(update_fields=['amount'])
+    return redirect('main:show_main')
+
+def min_amount(request, id):
+    data = Item.objects.filter(user=request.user).get(pk=id)
+    response = redirect('main:show_main')
+
+    if data.amount == 0:
+        return response
+
+    data.amount -= 1
+    data.save(update_fields=['amount'])
+    return response
+
+@login_required(login_url='/login')
+def delete_data(request, id):
+    data = Item.objects.filter(user=request.user).filter(pk=id)
+    data.delete()
+    return redirect('main:show_main')

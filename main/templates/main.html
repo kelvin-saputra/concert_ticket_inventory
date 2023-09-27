@@ -9,9 +9,12 @@
     <table>
         <tr>
             <th>Name</th>
-            <th>Price</th>
+            <th>Amount</th>
             <th>Description</th>
             <th>Date Added</th>
+            <th>-1 Amount</th>
+            <th>+1 Amount</th>
+            <th>Delete Data</th>
         </tr>
 
         {% for ticket in tickets %}
@@ -20,6 +23,9 @@
                 <td>{{ticket.amount}}</td>
                 <td>{{ticket.description}}</td>
                 <td>{{ticket.date_added}}</td>
+                <td><a href="min_amount/{{ticket.pk}}"><button>MIN</button></a></td>
+                <td><a href="add_amount/{{ticket.pk}}"><button>ADD</button></a></td>
+                <td><a href="delete_data/{{ticket.pk}}"><button>DELETE</button></a></td>
             </tr>
         {% endfor %}
     </table>
