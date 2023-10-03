@@ -414,3 +414,126 @@ sedangkan pada line 2 kita mengubah pemilik item menjadi user yang terautentikas
 ```html
 <h5>Sesi terakhir login: {{ last_login }}</h5>
 ```
+
+## To Do List TUGAS 5
+- [x]Kustomisasi desain pada templat HTML yang telah dibuat pada Tugas 4 dengan menggunakan CSS atau CSS framework (seperti Bootstrap, Tailwind, Bulma) dengan ketentuan sebagai berikut
+- [x] Kustomisasi halaman login, register, dan tambah inventori semenarik mungkin.
+- [x] Kustomisasi halaman daftar inventori menjadi lebih berwarna maupun menggunakan apporach lain seperti menggunakan Card. 
+- [x] Menjawab beberapa pertanyaan berikut pada README.md pada root folder.
+    * Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya.
+    * Jelaskan HTML5 Tag yang kamu ketahui.
+    * Jelaskan perbedaan antara margin dan padding.
+    * Jelaskan perbedaan antara framework CSS Tailwind dan Bootstrap. Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?
+    * Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+- [x] Melakukan add-commit-push ke GitHub.
+
+### Jelaskan Manfaat dari setiap Elemen Selektor!
+Berdasarkan yang saya ketahui, selektor merupakan suatu penanda dalam CSS untuk mengedit suatu blok elemen dalam `HTML`. terdapat beberapa selektor yang dapat terbagi menjadi berikut.
+- ***Selektor Universal***
+    * Selektor Universal adalah suatu selektor yang dapat mempengaruhi atau merubah seluruh gaya element dalam dokumen `HTML`. Waktu yang tepat untuk menggunakan selektor universal adalah ketika kita ingin menggunakan suatu ketentuan style yang sama dalam dokumen `HTML`. Sebagai contoh adalah padding, margin, font, dll.
+
+- ***Selektor Tag***
+    * Selektor Tag adalah suatu selektor yang dapat digunakan untuk mengubah style dari suatu tag HTML. dalam hal ini, misal kita ingin mengubah seluruh style pada tag `<h1>`. Maka kita dapat gunakan selektor tag untuk memberikan style pada seluruh `<h1>`.  kita dapat gunakan selektor tag ini untuk mengubah seluruh gaya pada suatu tag seperti yang dicontohkan sebelumnya.
+
+- ***Selektor ID***
+    * Selektor `ID` adalah selektor yang digunakan untuk mengubah style yang ada pada `ID` suatu blok `HTML`. Biasa digunakan untuk memberikan suatu style yang unik pada suatu `ID`.
+
+- ***Selektor Kelas***
+    * Selektor kelas adalah selektor yang digunakan untuk mengubah style yang ada pada suatu class. biasa digunakan untuk memberikan style pada suatu element yang memiliki class yang sama.
+
+### Tag-tag HTML5
+- `<header></header>`
+    * digunakan untuk memberikan header pada halaman web yang didalamnya bisa saja berisi navigasi judul atau logo dari pemilik website tersebut/
+- `<nav></nav>`
+    * digunakan untuk menampung navigasi bar halaman website
+- `<main></main>`
+    * digunakan untuk menampung konten utama dari suatu website.
+- `<article></article>`
+    * Mengelompokkan konten-konten yang secara terpisah dapat diubah-ubah.
+- `<aside></aside>`
+    * untuk menampung konten tambahan yang ada di samping dari konten utama.
+- `<section></section>`
+    * Mengelompokkan konten-konten menjadi bagian yang terpisah. Sebenarnya sama saja dengan tag `<article></article` namun tag `<section></section>` lebih meluas ketimbang `<article></article`.
+- `<footer></footer>`
+    * Digunakan untuk memberikan bagian bawah pada halaman web. seperti informasi hak cipta, informasi pemiliki website, dan beberapa navigasi sederhana.
+- `<figure></figure>`
+    * digunakan untuk menampilkan gambar atau grafik pada halaman web
+- `<canvas></canvas>`
+    * digunakan untuk memberikan user suatu ruang untuk menggambar.
+- `<form></form>`
+    * digunakan untuk mengelompokkan/membuat form pada website yang memungkinkan pengguna untuk mengirimkan data ke server
+- `<input></input>`
+    * digunakan untuk melengkapi form yang kita buat seperti membuat textfield, checkbox, button, dll
+- `<button></button>`
+    * digunakan untuk membuat tombol untuk melakukan suatu action.
+- `<a></a>`    
+    * Digunakan untuk membuat atau menampilkan suatu link/hyperlink kepada user di halaman website.
+- `<table></table>`
+    * Digunakan untuk membaut table pada halaman website. biasanya dibantu dengan tag-tag lain seperti
+        *  `<th></th>` : tag ini digunakan untuk membuat header kolom pada table
+        *  `<tr></tr>` : tag ini digunakan untuk membuat row pada table
+        *  `<td></td>` : tag ini digunakan untuk membuat nilai-nilai atau value pada table
+- `<div></div>`
+    * digunakan untuk mengelompokkan sesuatu secara satu kesatuan. secara kasar `<div></div>` dapat diartikan sebagai kontainer pada suatu fitur.
+- `<span></span>`
+    * digunakan untuk mengubah suatu tulisan secara khusus
+- `<video></video>`
+    * Digunakan untuk membuat media player video
+- `<audio></audio>`
+    * Digunakan untuk membuat media player audio
+
+### Perbedaan antara Margin dan Padding
+Perbedaan antara `padding` dan margin adalah sebagai berikut.
+- Fungsi Utama
+    * `Padding` digunakan untuk menberikan ruang kosong antara konten/elemen dengan border dari konten/elemen itu sendiri. Dengan kata lain, `padding` merupakan ruang kosong secara internal atau mengosongkan ruang ke dalam elemen itu sendiri.
+    * `Margin` digunakan untuk memberikan ruang kosong antara satu elemen/konten dengan elemen/konten lain. Dengan kata lain, `margin` merupakan ruang kosong secara eksternal atau mengosongkan ruang ke luar dari elemen itu sendiri.
+- Posisi
+    * `Padding` berada diantara konten elemen dengan border
+    * `Margin` berada diantara elemen 1 dengan elemen lainnya.
+- Pengaruh Ukuran Total
+    * `Padding` dapat mempengaruh ukuran total dari elemen. sehingga ukuran asli dari elemen akan ditambahkan dengan padding.
+    * `Margin` tidak mempengaruhi ukuran total dari suatu elemen.
+- *Background Color*
+    * `Padding` dapat memiliki warna background mengikuti elemen dan konten itu sendiri
+    * `Margin` tidak dapat memiliki warna background 
+
+### Perbedaan antara *framework* CSS Tailwind dan Bootstrap
+Perbedaan antara Tailwind dan Bootstrap adalah sebagai berikut.
+- Kustomisasi
+    * `Tailwind` sangat fleksibel dalam hal kustomisasi. Hal ini dapat memungkinkan kita menyesuaikan tampilan dengan sangat detail.
+    * `Bootstrap` bisa dikustomisasi namun relative lebih sulit dibandingkan menggunakan `Tailwind`
+- Ukuran File
+    * `Tailwind` ukuran filenya lebih kecil karena tidak terlalu banyak komponen pra desain sehingga kita perlu melakukan kustomisasi secara mandiri
+    * `Bootstrap` ukuran filenya lebih besar dibandingkan tailwind karena banyak komponen pra desain
+- Jumlah Kelas
+    * pada `Tailwind` kelas bisa ditambahkan langsung ke HTML yang membuat kita dapat lebih mudah untuk mengatur/memiliki kontrol yang lebih besar terhadap tampilan dan element itu sendiri
+    * pada `Bootstrap` kelas CSS sudah ditetapkan yang membuat code menjadi lebih bersih namun kontrol yang tidak terlalu besar.
+Penggunaan `Tailwind` dan `Bootstrap` bergantung pada beberapa aspek sebagai berikut
+- Tailwind
+    * Digunakan ketika kita memiliki kemampuan atau ilmu design yang lebih sehingga dapat lebih leluasa dalam melakukan design
+    * Digunakan untuk menghasilkan tampilan website yang lebih baik dan sesuai dengan keinginan.
+- Bootstrap
+    * Digunakan ketika tidak banyak ilmu design yang dimiliki sehingga dapat memanfaatkan banyaknya komponen pra desain pada bootstrap
+    * Desain yang diinginkan tidak begitu berbeda jauh dengan komponen pada bootstrap
+    * Tidak memiliki waktu yang banyak untuk membuat project 
+
+### Jelaskan Langkah-Langkah dalam memenuhi check list
+#### Melakukan importing bootstrap ke dalam projek 
+- Sebelum melakukan design/kustomisasi halaman web, hal yang perlu dilakukan adalah menyisipkan static file bootstrap ke dalam template `base.html`. Langkah ini menjadi sangat penting karena bertujuan agar kita dapat menggunakan pra-komponen langsung dari bootstrap.
+
+#### Melakukan Kustomisasi pada halaman login, register, add item, dan edit item.
+- Setelah melakukan import, hal yang saya lakukan untuk memodifikasi halaman-halaman tersebut adalah dengan membuat nya menjadi dalam 1 kontainer
+- Setelah itu, lakukan pengaturan pada padding dan margin agar sesuai dengan yang diinginkan
+- Untuk membuatnya menjadi fokus utama dalam suatu halaman web, saya membuat seluruh elemen menjadi `center`.
+- Setelah itu saya menambahkan tombol tindak lanjut dan tombol kembali yang dapat digunakan user untuk membatalkan suatu proses dengan memanfaatkan btn bawaan dari bootstrap.
+- Setelah itu saya melakukan modifikasi tata letak form seperti antara label dengan field isi saya buat menjadi atas bawah sehingga kita tidak perlu mengukur padding antar konten.
+- Selanjutnya dengan memanfaatkan kelas pada bootstrap, saya dapat dengan mudah untuk mengganti warna tombol tombol yang ada pada halaman web.
+
+#### Melakukan Kustomisasi pada tampilan main
+- Pertama saya membuat bar navigasi yang bertujuan untuk memudahkan user untuk memilih menu.
+- Untuk sementara saya memasukkan navigasi yang dapat mengarahkan website ke `main`, melakukan `add_ticket`, dan `logout`.
+- Tidak lupa saya tambahkan nama user yang login ke dalam bar navigasi.
+- Untuk menampilkan inventory yang sudah berhasil di inputkan, saya mengubah tampilan dari yang awalnya menggunakan pendekatan tabel, sekarang saya menggunakan pendekatan card.
+- saya memberikan tiap card menu yang dapat digunakan seperti menambahkan dan mengurangkan amount, mengedit data, dan menghapus data.
+- Seluruh menu tersebut saya sajikan dalam bentuk button yang diberikan warna yang berbeda dengan bantuan dari framework bootstrap.
+Setelah itu saya memberikan tombol-tombol tersebut terhubung dengan logic program yang ada di `views.py` melalui `urls.py` 

@@ -1,46 +1,58 @@
 {% extends 'base.html' %}
 
+<style>
+  .info-text {
+    font-size: 18px;
+    color: #007BFF;
+    background-color: #F8F9FA;
+    padding: 5px 10px;
+    border: 1px solid #CED4DA;
+    border-radius: 5px;
+}
+</style>
 {% block content %}
-    <h1>Concert Ticket Inventory</h1>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container">
+      <a class="navbar-brand" href="main:main.html"><h3>FunConcert</h3></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav ml-auto">
+              <a class="nav-link" href="{% url 'main:create_item' %}">Add Product</a>
+              <a class="nav-link" href="{% url 'main:logout' %}">Logout</a>
+              <a class="nav-link disabled" aria-disabled="true"><b>{{ name }}</b></a>
+          </div>
+      </div>
+  </div>
+</nav>
 
-    <h3>Name : {{name}}</h3>
 
-    <h4>Kamu menyimpan {{count}} item pada aplikasi ini</h4>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Amount</th>
-            <th>Description</th>
-            <th>Date Added</th>
-            <th>-1 Amount</th>
-            <th>+1 Amount</th>
-            <th>Delete Data</th>
-        </tr>
-
+<div class="container">
+    <div class="row">
         {% for ticket in tickets %}
-            <tr>
-                <td>{{ticket.name}}</td>
-                <td>{{ticket.amount}}</td>
-                <td>{{ticket.description}}</td>
-                <td>{{ticket.date_added}}</td>
-                <td><a href="min_amount/{{ticket.pk}}"><button>MIN</button></a></td>
-                <td><a href="add_amount/{{ticket.pk}}"><button>ADD</button></a></td>
-                <td><a href="delete_data/{{ticket.pk}}"><button>DELETE</button></a></td>
-            </tr>
+        <div class="col-md-4 mb-4 my-5">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ticket.name}}</h5>
+                    <p class="card-text"><strong>Amount:</strong> {{ticket.amount}}</p>
+                    <p class="card-text"><strong>Description:</strong> {{ticket.description}}</p>
+                    <p class="card-text"><strong>Date Added:</strong> {{ticket.date_added}}</p>
+                </div>
+                <div class="card-footer">
+                    <a href="min_amount/{{ticket.pk}}" class="btn btn-danger">MIN</a>
+                    <a href="add_amount/{{ticket.pk}}" class="btn btn-success">ADD</a>
+                    <a href="edit_data/{{ticket.pk}}" class="btn btn-info">EDIT</a>
+                    <a href="delete_data/{{ticket.pk}}" class="btn btn-warning">DELETE</a>
+                    
+                </div>
+            </div>
+        </div>
         {% endfor %}
-    </table>
-    <h5>Sesi terakhir login: {{ last_login }}</h5>
-    
-<a href="{% url 'main:create_item' %}">
-    <button>
-        Add New Ticket
-    </button>
-</a>
+    </div>
+</div>
+<h5 class="info-text"><i class="fas fa-clock"></i> Terakhir Login: {{ last_login }}</h5>
+<h5 class="info-text"><i class="fas fa-save"></i> Kamu menyimpan {{ count }} item pada aplikasi ini</h5>
 
-<a href="{% url 'main:logout' %}">
-    <button>
-        Logout
-    </button>
-</a>
 
 {% endblock content %}

@@ -15,5 +15,6 @@ urlpatterns = [
     path('json/<int:id>/', show_json_by_id, name='show_json_by_id'),
     path('add_amount/<int:id>', add_amount, name='add_amount'),
     path('min_amount/<int:id>', min_amount, name='min_amount'),
-    path('delete_data/<int:id>', delete_data, name='delete_data')
+    path('delete_data/<int:id>', delete_data, name='delete_data'),
+    path('edit_data/<int:id>', edit_data, name='edit_data')
 ]

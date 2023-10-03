@@ -41,13 +41,12 @@ def login_user(request):
                 response.set_cookie('last_login', str(datetime.datetime.now()))
                 return response
         else:
-            messages.info(request, 'Sorry, incorrect username or password. Please try again.')
+            messages.info(request, 'Incorrect username or password. Please try again.')
     context = {}
     return render(request, 'login.html', context)
 
 def register(request):
     form = UserCreationForm()
-
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -107,3 +106,12 @@ def delete_data(request, id):
     data = Item.objects.filter(user=request.user).filter(pk=id)
     data.delete()
     return redirect('main:show_main')
+
+def edit_data(request, id):
+    data = Item.objects.get(pk = id)
+    form = ItemForm(request.POST or None, instance=data)
+    if form.is_valid() and request.method == "POST":
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+    context = {'form': form}
+    return render(request, "edit_data.html", context)
