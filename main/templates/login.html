@@ -5,41 +5,41 @@
 {% endblock meta %}
 
 {% block content %}
-
-<div class = "login">
-
-    <h1>Login</h1>
-
-    <form method="POST" action="">
-        {% csrf_token %}
-        <table>
-            <tr>
-                <td>Username: </td>
-                <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
-            </tr>
-                    
-            <tr>
-                <td>Password: </td>
-                <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
-            </tr>
-
-            <tr>
-                <td></td>
-                <td><input class="btn login_btn" type="submit" value="Login"></td>
-            </tr>
-        </table>
-    </form>
-
-    {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}     
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 my-5">
+            <div class="login">
+                <div class="card-header"><h1>Login</h1></div>
+                <div class="card-body">
+                    <div class="card-body">
+                        <form method="POST" action="">
+                            {% csrf_token %}
+                            <div class="form-group" style="margin: 20px;">
+                                <label for="username">Username</label>
+                                <input type="text" name="username" placeholder="Username" class="form-control">
+                            </div>
+                            <div class="form-group" style="margin: 20px;">
+                                <label for="password">Password</label>
+                                <input type="password" name="password" placeholder="Password" class="form-control">
+                            </div>
+                            <div class="form-group" style="margin: 20px;">
+                                <input class="btn btn-primary login_btn" type="submit" value="Login">
+                            </div>
+                        </form>
         
-    Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a>
-
+                        {% if messages %}
+                            <ul class="list-unstyled">
+                                {% for message in messages %}
+                                    <li class="text-danger">{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}     
+        
+                        <p>Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
 {% endblock content %}
