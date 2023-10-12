@@ -29,4 +29,4 @@ RUN chown -R django:django /app
 USER django
 
 # Run application
-CMD gunicorn concert_ticket_inventory.wsgi:application
+# CMD gunicorn concert_ticket_inventory.wsgi:application
