@@ -1,15 +1,5 @@
 {% extends 'base.html' %}
 
-<style>
-  .info-text {
-    font-size: 18px;
-    color: #007BFF;
-    background-color: #F8F9FA;
-    padding: 5px 10px;
-    border: 1px solid #CED4DA;
-    border-radius: 5px;
-}
-</style>
 {% block content %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container">
@@ -19,7 +9,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ml-auto">
-              <a class="nav-link" href="{% url 'main:create_item' %}">Add Product</a>
+              <a class="nav-link" href="{% url 'main:create_item' %}">Add Item</a>
               <a class="nav-link" href="{% url 'main:logout' %}">Logout</a>
               <a class="nav-link disabled" aria-disabled="true"><b>{{ name }}</b></a>
           </div>
@@ -27,32 +17,101 @@
   </div>
 </nav>
 
-
-<div class="container">
-    <div class="row">
-        {% for ticket in tickets %}
-        <div class="col-md-4 mb-4 my-5">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">{{ticket.name}}</h5>
-                    <p class="card-text"><strong>Amount:</strong> {{ticket.amount}}</p>
-                    <p class="card-text"><strong>Description:</strong> {{ticket.description}}</p>
-                    <p class="card-text"><strong>Date Added:</strong> {{ticket.date_added}}</p>
-                </div>
-                <div class="card-footer">
-                    <a href="min_amount/{{ticket.pk}}" class="btn btn-danger">MIN</a>
-                    <a href="add_amount/{{ticket.pk}}" class="btn btn-success">ADD</a>
-                    <a href="edit_data/{{ticket.pk}}" class="btn btn-info">EDIT</a>
-                    <a href="delete_data/{{ticket.pk}}" class="btn btn-warning">DELETE</a>
-                    
-                </div>
+<div class="container" id="item_container"></div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Item</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form" onsubmit="return false;">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="name" class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="amount" class="col-form-label">Amount:</label>
+                        <input type="number" class="form-control" id="amount" name="amount"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="col-form-label">Description:</label>
+                        <textarea class="form-control" id="description" name="description"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal" >Add Item</button>
             </div>
         </div>
-        {% endfor %}
     </div>
 </div>
-<h5 class="info-text"><i class="fas fa-clock"></i> Terakhir Login: {{ last_login }}</h5>
-<h5 class="info-text"><i class="fas fa-save"></i> Kamu menyimpan {{ count }} item pada aplikasi ini</h5>
+
+<button type="button" class="btn btn-primary mx-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Item by AJAX</button>
+
+<h5 class="info-text"> Terakhir Login: {{ last_login }}</h5>
+<h5 class="info-text" id="count-item"> Kamu menyimpan {{ count }} item pada aplikasi ini</h5>
 
 
+<script>
+    async function getItems() {
+        return fetch("{% url 'main:get_item_json' %}").then((res) => res.json())
+    }
+
+    async function refreshItem() {
+        document.getElementById("item_container").innerHTML = ""
+        const items = await getItems()
+        let htmlString = `
+            <div class="row">`
+
+        items.forEach((item) =>{
+            htmlString += `
+                <div class="col-md-4 mb-4 my-5" data-item-id="${item.pk}">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">${item.fields.name}</h5>
+                            <p class="card-text"><strong>Amount:</strong> ${item.fields.amount}</p>
+                            <p class="card-text"><strong>Description:</strong> ${item.fields.description}</p>
+                            <p class="card-text"><strong>Date Added:</strong> ${item.fields.date_added}</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="min_amount/${item.pk}" class="btn btn-danger">MIN</a>
+                            <a href="add_amount/${item.pk}" class="btn btn-success">ADD</a>
+                            <a href="edit_data/${item.pk}" class="btn btn-info">EDIT</a>
+                            <button onclick="deleteItem(${item.pk})" class="btn btn-warning">DELETE</button>
+                        </div>
+                    </div>
+                </div>`
+        })
+        htmlString += `
+        </div>
+        `
+        document.getElementById("item_container").innerHTML = htmlString
+    }
+    refreshItem()
+
+    async function addItem() {
+        fetch("{% url 'main:add_item_ajax' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#form'))
+        }).then(refreshItem)
+        document.getElementById("form").reset()
+        return false
+    }
+
+    function deleteItem(itemId) {
+        fetch(`{% url 'main:delete_item' 0 %}`.replace("0", itemId), {
+            method: "POST",
+            body: new FormData(document.querySelector('#form'))
+        }).then(refreshItem)
+        document.getElementById('#form').reset()
+        return false
+    }
+    refreshItem()
+
+    document.getElementById("button_add").onclick = addItem
+</script>
 {% endblock content %}
