@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseNotFound, HttpResponseRedirect
 from main.forms import ItemForm
 from main.models import Item
 from django.urls import reverse
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.core import serializers
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 import datetime
 
@@ -101,7 +102,6 @@ def min_amount(request, id):
     data.save(update_fields=['amount'])
     return response
 
-@login_required(login_url='/login')
 def delete_data(request, id):
     data = Item.objects.filter(user=request.user).filter(pk=id)
     data.delete()
@@ -115,3 +115,27 @@ def edit_data(request, id):
         return HttpResponseRedirect(reverse('main:show_main'))
     context = {'form': form}
     return render(request, "edit_data.html", context)
+
+def get_item_json(request):
+    item = Item.objects.filter(user=request.user)
+    return HttpResponse(serializers.serialize('json', item))
+
+@csrf_exempt
+def add_item_ajax(request):
+    if request.method == 'POST':
+        name = request.POST.get("name")
+        amount = request.POST.get("amount")
+        description = request.POST.get("description")
+        user = request.user
+
+        new_item = Item(name=name, amount=amount, description=description, user=user)
+        new_item.save()
+
+        return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()
+
+def delete_item(request, id):
+    item = Item.objects.filter(user=request.user).get(pk=id)
+    item.delete()
+    return HttpResponseRedirect(reverse('main:show_main'))

@@ -537,3 +537,212 @@ Penggunaan `Tailwind` dan `Bootstrap` bergantung pada beberapa aspek sebagai ber
 - saya memberikan tiap card menu yang dapat digunakan seperti menambahkan dan mengurangkan amount, mengedit data, dan menghapus data.
 - Seluruh menu tersebut saya sajikan dalam bentuk button yang diberikan warna yang berbeda dengan bantuan dari framework bootstrap.
 Setelah itu saya memberikan tombol-tombol tersebut terhubung dengan logic program yang ada di `views.py` melalui `urls.py` 
+
+## To Do List TUGAS 6
+ - [x] Mengubah tugas 5 yang telah dibuat sebelumnya menjadi menggunakan AJAX.
+    * [x] AJAX GET
+        + Ubahlah kode tabel data item agar dapat mendukung AJAX GET.
+        + Lakukan pengambilan task menggunakan AJAX GET.
+
+    * [x] AJAX POST
+        + Buatlah sebuah tombol yang membuka sebuah modal dengan form untuk menambahkan item.
+        + Modal di-trigger dengan menekan suatu tombol pada halaman utama. Saat penambahan item berhasil, modal harus ditutup dan input form harus dibersihkan dari data yang sudah dimasukkan ke dalam form sebelumnya.
+        + Buatlah fungsi view baru untuk menambahkan item baru ke dalam basis data.
+        + Buatlah path /create-ajax/ yang mengarah ke fungsi view yang baru kamu buat.
+        + Hubungkan form yang telah kamu buat di dalam modal kamu ke path /create-ajax/.
+        + Lakukan refresh pada halaman utama secara asinkronus untuk menampilkan daftar item terbaru tanpa reload halaman utama secara keseluruhan.
+
+    * [x] Melakukan perintah collectstatic.
+        + Perintah ini bertujuan untuk mengumpulkan file static dari setiap aplikasi kamu ke dalam suatu folder yang dapat dengan mudah disajikan pada produksi.
+
+- [x] Menjawab beberapa pertanyaan berikut pada README.md pada root folder (silakan modifikasi README.md yang telah kamu buat sebelumnya; tambahkan subjudul untuk setiap tugas).
+    * Jelaskan perbedaan antara asynchronous programming dengan synchronous programming.
+    * Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma event-driven programming. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini.
+    * Jelaskan penerapan asynchronous programming pada AJAX.
+    * Pada PBP kali ini, penerapan AJAX dilakukan dengan menggunakan Fetch API daripada library jQuery. Bandingkanlah kedua teknologi tersebut dan tuliskan pendapat kamu teknologi manakah yang lebih baik untuk digunakan.
+    * Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+
+- [x] Melakukan add-commit-push ke GitHub.
+
+- [x] Melakukan deployment ke PaaS PBP Fasilkom UI dan sertakan tautan aplikasi pada file README.md.
+
+### Perbedaan Antara *Asynchronous Programming* dan *Synchronous Programming*
+- Pengertian
+    * Asynchronous Programming merupakan salah satu pendekatan dalam pemrograman yang memungkinkan suatu perintah dapat dijalankan secara bersamaan tanpa perlu menunggu perintah lain selesai untuk dieksekusi. dengan kata lain, Asynchronous Programming merupakan teknik dalam pemrograman yang tidak bergantung pada I/O sehingga dapat menjalankan perintah dengan lebih dinamis.
+    * Synchronous Programming merupakan salah satu pendekatan dalam pemrograman dimana perintah akan dieksekusi secara sequential atau berdasarkan urutan dan prioritas.
+- *Blocking*
+    * Pada proses Asynchronous programming tidak terdapat blocking. sehingga untuk tugas-tugas yang memakan waktu lebih lama tetap bisa untuk dijalankan di latar belakang aplikasi sehingga tidak mengganggu proses lainnya.
+    * Pada proses Synchronous Programming terdapat blocking. dampak dari adanya blocking adalah ketika terdapat tugas yang memiliki waktu yang lebih lama dapat menghambat proses lain karena perintah dijalankan secara pararel sehingga ketika terdapat proses yang lama maka perintah lain tidak dapat dieksekusi.
+- Kecepatan
+    * dalam konteks pemrograman berbasis platform ini, kecepatan dari program yang menggunakan pendekatan Asynchronous programming akan lebih cepat ketika website membutuhkan akses ke data ke database.
+
+### Apa itu Paradigma *Event Driven Programming*?
+Paradigma *Event Driven Programming* adalah sebuah paradigma pemrograman yang berfokus pada pengendalian(handling) event yang diberikan oleh user. Event tersebut meliputi Mouse Event, Keyboard Event, Form Event. Salah satu penerapan *Event Driven Programming* yang diimplementasikan dalam tugas 6 ini adalah pembuatan menu popup yang dapat digunakan untuk menambahkan item pada inventory dengan menggunakan AJAX.
+### Jelaskan penerapan *asynchronous programming* pada AJAX.
+Penerapan Asynchronous Programming dalam AJAX berupa teknik dalam pengembangan web yang memungkinkan komunikasi antara peramban web dan server web untuk dilakukan secara asinkron, tanpa harus me-refresh seluruh halaman web. Berikut adalah penjelasan mengenai penerapa Asynchronous Programming dalam AJAX lebih mendalam.
+1. Pengiriman Requests HTTP
+    Dalam konteks ini, ketika kita melakukan pengiriman permintaan AJAX, kita tidak perlu menahan eksekusi kode sampai respons dari server tiba. Dengan kata lain, kita dapat  mengirimkan permintaan dan melanjutkan dengan eksekusi kode lainnya, sementara notifikasi atau event akan memberitahu kita ketika respons dari server telah siap untuk diproses.
+2. Event Handling
+    Implementasi ini dapat kita temui ketika  setelah kita mengambil data dari server atau mengirimkan data ke server, sebuah event akan dipicu. Di sini, kita dapat mengonfigurasi event handler untuk merespons data yang kita terima. Ini bisa berarti memperbarui tampilan pengguna dengan data baru atau menjalankan tindakan tertentu berdasarkan respons yang diterima.
+3. Callback Function
+    Callback functions adalah alat yang sering digunakan dalam AJAX untuk menentukan apa yang harus dilakukan ketika respons dari server telah diterima. Callback function merupakan fungsi JavaScript yang akan dijalankan ketika operasi asinkron selesai. Misalnya kita dapat menggunakan callback function sukses (success) untuk mengelola respons yang berhasil dan callback fungsi error untuk menangani kesalahan jika permintaan AJAX mengalami kegagalan.
+4. Promises dan async/await
+    Dengan menggunakan Promises,kita dapat menghindari "callback hell" dan membuat kode lebih rapi, sedangkan async/await memungkinkan kita untuk menulis kode yang tampak seperti sinkron meskipun sebenarnya berjalan secara asinkron.
+
+### Perbandingan antara kedua teknologi Fetch API dan Library jQuery
+
+|       | Fetch API | jQuery |
+|-------| :-------: | :----: |
+| Keberadaan dalam JavaScript | Bagian dari JavaScript modern (ECMAScript) dan tidak perlu download atau pustaka tambahan. | Pustaka JavaScript terpisah yang perlu di download dan masukkan ke dalam proyek. |
+| Manajemen Request | Fetch API mengembalikan objek Promise, yang memudahkan untuk mengelola requests dengan cara yang bersih dan terstruktur.|  jQuery menggunakan pendekatan callback-based untuk manajemen requests, yang bisa menjadi kurang bersih dan membingungkan jika terdapat banyak requests bersarang. |
+| Flekbilitas | lebih banyak kontrol atas requests HTTP, seperti mengatur header, metode, mode requests (cors, same-origin, dll.). | jQuery menyederhanakan permintaan AJAX sederhana dan tidak memberikan kontrol sebanyak Fetch API. |
+| Handling Response | Fetch API menyediakan metode built-in seperti json(), text(), dan lainnya untuk mengelola berbagai jenis respons dengan mudah. | jQuery memiliki metode built-in yang memfasilitasi pengolahan respons, seperti $.getJSON() untuk mengambil data JSON dan $.ajax() untuk pengaturan kustom. | 
+| Compatibility | Terbatas di beberapa peramban lama. | Memiliki compatibility yang baik untuk peramban lama. |
+
+Berdasarkan perbandingan yang dijabarkan sebelumnya, menurut saya Fetch API lebih baik digunakan pada masa sekarang. khususnya untuk project project dalam skala yang besar dan kompleks. Selain itu, kita tidak perlu melakukan instalasi dan repot untuk menambahkannya ke dalam projek. Namun, jika kita sedang mengerjakan projek yang kecil dan menggunakan akses dari peramban lama, jQuery akan menjadi pilihan yang baik.
+
+### Jelaskan langkah-langkah dalam memenuhi CheckList
+#### Membuat fungsi `get_item_json`
+1. Implementasikan fungsi `get_item_json` yang digunakan untuk mengambil seluruh objek `Item` yang telah dibuat sebagai berikut.
+```python
+def get_item_json(request):
+    item = Item.objects.filter(user=request.user)
+    return HttpResponse(serializers.serialize('json', item))
+```
+2. Fungsi tersebut akan mengembalikan seluruh objek `Item` yang telah dibuat dengan format yang telah dikonversi menjadi `JSON`
+
+#### Membuat fungsi `add_item_ajax`
+1. Implementasikan fungsi `add_item_ajax` yang digunakan untuk membuat item seperti berikut.
+```python
+@csrf_exempt
+def add_item_ajax(request):
+    if request.method == 'POST':
+        name = request.POST.get("name")
+        amount = request.POST.get("amount")
+        description = request.POST.get("description")
+        user = request.user
+
+        new_item = Item(name=name, amount=amount, description=description, user=user)
+        new_item.save()
+
+        return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()
+```
+2. Dengan menggunakan `@csrf_exempt`, program akan mengabaikan keamanan dalam pembuatan objek menggunakan AJAX sehingga program akan menjadi jauh lebih sederhana
+
+#### Perubahan pengambilan data item menggunakan AJAX
+1. Pertama yang saya lakukan adalah mengubah card item yang terhubung langsung dengan objek `Item` melalui looping menjadi suatu container kosong yang akan menampung `Card Item` tersebut. 
+```html
+<div class="container" id="item_container">
+```
+2. Selanjutnya saya akan membuat fungsi asynchronous pada javascript agar proses berjalan pada background dan tidak menunggu proses tersebut selesai.
+3. Fungsi asynchronous pertama yang saya buat adalah `getItems` yang berfungsi untuk mengambil semua object `Item` dengan implementasi sebagai berikut.
+```javascript
+async function getItems() {
+        return fetch("{% url 'main:get_item_json' %}").then((res) => res.json())
+    }
+```
+4. Selanjutnya dengan memanfaatkan fungsi `getItems` dan id `item_container`, saya membuat fungsi `refreshItem` yang akan meloading seluruh item yang didapatkan melalui pemanggilan `getItems` untuk dimasukkan ke dalam `card` yang selanjutnya akan disisipkan pada innerHTML `item_container`. Berikut adalah implementasi dari fungsi `refreshItem`.
+```javascript
+async function refreshItem() {
+        document.getElementById("item_container").innerHTML = ""
+        const items = await getItems()
+        let htmlString = `
+            <div class="row">`
+
+        items.forEach((item) =>{
+            htmlString += `
+                <div class="col-md-4 mb-4 my-5" data-item-id="${item.pk}">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">${item.fields.name}</h5>
+                            <p class="card-text"><strong>Amount:</strong> ${item.fields.amount}</p>
+                            <p class="card-text"><strong>Description:</strong> ${item.fields.description}</p>
+                            <p class="card-text"><strong>Date Added:</strong> ${item.fields.date_added}</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="min_amount/${item.pk}" class="btn btn-danger">MIN</a>
+                            <a href="add_amount/${item.pk}" class="btn btn-success">ADD</a>
+                            <a href="edit_data/${item.pk}" class="btn btn-info">EDIT</a>
+                            <a href="delete_data/${item.pk}" class="btn btn-warning">DELETE</a>
+                        </div>
+                    </div>
+                </div>`
+        })
+        htmlString += `\n</div>`
+        document.getElementById("item_container").innerHTML = htmlString
+    }
+```
+5. `htmlString` merupakan potongan code html yang yang akan disisipkan dalam innerHTML dari id `item_container`.
+
+#### Pembuatan Modal Form menggunakan AJAX POST
+1. Untuk membuat model ini saya akan memanfaatkan fungsi `add_item_ajax` yang ada pada file `views.py` agar item yang ditambahkan melalui form dapat disimpan ke dalam database
+2. Agar fungsi `add_item_ajax` dapat digunakan dalam file html dan scriptnya, kita perlu melakukan routing dengan cara menambahkan path fungsi tersebut kedalam urlpattern yang ada di `urls.py`
+3. selanjutnya tambahkan kode berikut ke dalam file HTML yang kita miliki
+```html
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Item</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form" onsubmit="return false;">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="name" class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="amount" class="col-form-label">Amount:</label>
+                        <input type="number" class="form-control" id="amount" name="amount"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="col-form-label">Description:</label>
+                        <textarea class="form-control" id="description" name="description"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div c lass="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal" >Add Item</button>
+            </div>
+        </div>
+    </div>
+</div>
+```
+code html tersebut digunakan merupakan kode form yang akan tampil jika suatu button form akan dibuat.
+4. Untuk itu kita perlu menambahkan button yang dapat memunculkan popup form tersebut sehingga form tersebut akan muncul ketika kita menekan tombol tersebut.
+```html
+<button type="button" class="btn btn-primary mx-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Item by AJAX</button>
+```
+5. selanjutnya kita perlu menghubungkan modal form tersebut dengan suatu fungsi. sehingga ketika kita memasukkan atau melakukan submisi form, data-data yang ada dalam form dapat ditangkap oleh program dan disimpan ke dalam database.
+6. Fungsi yang saya buat adalah fungsi `addItem` fungsi ini akan memanggil fungsi `add_item_ajax` yang ada pada file `views.py` sehingga data dapat ditangkap dan disimpan dalam database. Selain itu pada fungsi tersebut saya akan melakukan refresh namun secara asynchronous sehingga tidak seluruh halaman utama di refresh lalu mengosongkan form yang sudah di submit tadi. implementasi code sebagai berikut.
+```javascript
+function addItem() {
+        fetch("{% url 'main:add_item_ajax' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#form'))
+        }).then(refreshItem)
+        
+        document.getElementById("form").reset()
+        return false
+    }
+```
+7. agar tombol submisi pada form dapat terhubung dengan fungsi tersebut saya akan menambahakn penghubung agar ketika tombol submit di klik, kita akan memanggil fungsi javascript `addItem`. berikut adalah implementasi dari code tersebut
+```javascript
+document.getElementById("button_add").onclick = addItem
+```
+
+#### Melakukan Collectstatic 
+1. Untuk melakukan `collectstatic` saya membuka terminal lalu masuk ke dalam direktori project ini berada.
+2. Selanjutnya saya masuk ke dalam virtual environment dengan cara memasukkan code berikut ke dalam terminal
+```shell
+env\Scripts\activate.bat
+```
+3. Setelah di dalam virtual environment, saya akan mengumpulkan seluruh file static yang ada pada seluruh aplikasi yang saya buat dalam proyek ini, lalu saya kumpulkan ke dalam satu folder khusus dengan menjalankan perintah sebagai berikut.
+```shell
+python manage.py collectstatic
+```

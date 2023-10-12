@@ -16,5 +16,8 @@ urlpatterns = [
     path('add_amount/<int:id>', add_amount, name='add_amount'),
     path('min_amount/<int:id>', min_amount, name='min_amount'),
     path('delete_data/<int:id>', delete_data, name='delete_data'),
-    path('edit_data/<int:id>', edit_data, name='edit_data')
+    path('edit_data/<int:id>', edit_data, name='edit_data'),
+    path('get-item/', get_item_json, name='get_item_json'),
+    path('create-ajax/', add_item_ajax, name='add_item_ajax'),
+    path('delete-item/<int:id>', delete_item, name='delete_item'),
 ]
