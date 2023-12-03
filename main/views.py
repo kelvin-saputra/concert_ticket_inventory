@@ -6,6 +6,7 @@ from main.models import Item
 from django.urls import reverse
 from django.http import HttpResponse, JsonResponse
 from django.core import serializers
+from django.core.serializers import serialize
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -142,6 +143,17 @@ def delete_item(request, id):
     return HttpResponseRedirect(reverse('main:show_main'))
 
 @csrf_exempt
+def get_user_item(request):
+    user = request.user
+
+    if user.is_authenticated:
+        user_id = user.id
+        data = Item.objects.filter(user_id=user_id)
+    else:
+        data = []
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+@csrf_exempt
 def create_product_flutter(request):
     if request.method == 'POST':
         
@@ -150,7 +162,7 @@ def create_product_flutter(request):
         new_product = Item.objects.create(
             user = request.user,
             name = data["name"],
-            price = int(data["price"]),
+            amount = int(data["amount"]),
             description = data["description"]
         )
 
